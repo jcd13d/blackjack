@@ -1,2 +1,2 @@
-public class Card t st{
+public class Card {
 }
