@@ -17,11 +17,12 @@ public class GameSession extends Utility{
         if (gameNumber == 1) {
             // Start Black Jack game 
             BlackJack BJgame = new BlackJack();
+            BJgame.playGame();
 
         } else if (gameNumber == 2) {
             // Start Trianta Ena
             TriantaEna TEgame = new TriantaEna();
-            
+            TEgame.playGame();
 
         }
 
