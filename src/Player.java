@@ -5,7 +5,7 @@ public abstract class Player {
 
     String name;
     int numWins;
-    ArrayList<Hand> hand;
+    ArrayList<Hand> hands;
     boolean dealer;
 
     public Player() {
@@ -19,10 +19,12 @@ public abstract class Player {
     public Player(String name, boolean dealer) {
         this.name = name;
         numWins = 0;
-        hand = new ArrayList<Hand>();
-        hand.add(new Hand());
+        hands = new ArrayList<Hand>();
+        addHand(new Hand());
         this.dealer = dealer;
     }
+
+    public abstract boolean getPlayerMove();
 
     public static int getTotalPlayers() {
         return totalPlayers;
@@ -40,8 +42,8 @@ public abstract class Player {
         return numWins;
     }
 
-    public void setNumWins(int numWins) {
-        this.numWins = numWins;
+    public void addWin() {
+        numWins++;
     }
 
     public boolean isDealer() {
@@ -50,6 +52,10 @@ public abstract class Player {
 
     public void setDealer(boolean dealer) {
         this.dealer = dealer;
+    }
+
+    public void addHand(Hand hand) {
+        hands.add(hand);
     }
 
 }
