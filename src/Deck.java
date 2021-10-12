@@ -19,7 +19,7 @@ public class Deck{
         this.deck = new ArrayList<Card>();
         for (int n = 0; n < numDecks; n++) {
             for (String suit : suits) {
-                for (int j = 0; j < 13; j++) {
+                for (int j = 1; j < 14; j++) {
                     deck.add(new Card(suit,j));
                 }
             }
@@ -33,7 +33,7 @@ public class Deck{
     public void createStandardDeck(){
         this.deck = new ArrayList<Card>();
         for (String suit : suits) {
-            for (int j = 0; j < 13; j++) {
+            for (int j = 1; j < 14; j++) {
                 deck.add(new Card(suit,j));
             }
         }
