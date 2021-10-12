@@ -11,7 +11,7 @@ public class BJPlayer extends Player implements Gambler {
         bet = 0;
     }
 
-    public boolean playerMove(Deck deck, boolean dealer) {
+    public boolean getPlayerMove(Deck deck, boolean dealer) {
         String input;
         if (!dealer) {
             for (int i = 0; i < hands.size(); i++) {
@@ -39,16 +39,18 @@ public class BJPlayer extends Player implements Gambler {
 
             }
         } else {
-            // dealer logic call method
-            // TODO implement dealer move
+            // dealer move
             for (Hand hand : hands) {
-                while (hand.getHandValue() < BJPlayer.dealerStaysOn) {
-                    hit(deck, hand);
-                }
+                dealerLogic(deck, hand);
             }
         }
+        return true;        // should this be boolean? TODO
+    }
 
-        return true;
+    private void dealerLogic(Deck deck, Hand hand) {
+        while (hand.getHandValue() < BJPlayer.dealerStaysOn) {
+            hit(deck, hand);
+        }
     }
 
     private void stand() {
@@ -77,17 +79,18 @@ public class BJPlayer extends Player implements Gambler {
 
     private void doubleUp(Deck deck, Hand hand) {
         // double bet
-
+        placeBet(getBet());
         // then hit
+        hit(deck, hand);
         // then stand prompt
+        stand();
     }
-
 
     public double getBet() {
         return bet;
     }
 
-    public void placeBet(int bet) {
+    public void placeBet(double bet) {
         decrementBalance(bet);
         this.bet = this.bet + bet;
     }
