@@ -27,3 +27,6 @@ hs_err_pid*
 
 # Editor files
 .idea/
+
+# Java file idk if we should ignore
+*.iml
