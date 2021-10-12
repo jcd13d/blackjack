@@ -8,7 +8,7 @@
 *.ctxt
 
 # VSCode files
-.vscode
+*.vscode
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
