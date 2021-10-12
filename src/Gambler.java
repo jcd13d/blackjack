@@ -4,7 +4,7 @@ interface Gambler{
   void placeBet(int bet);
 
   //Method to get a bet to be placed by a player
-  int getBet();
+  double getBet();
 
   //Method to set the players balance
   void setBalance();
