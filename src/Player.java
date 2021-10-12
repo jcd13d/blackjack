@@ -7,6 +7,7 @@ public abstract class Player {
     int numWins;
     ArrayList<Hand> hands;
     boolean dealer;
+    UtilityClass utils;
 
     public Player() {
         this(String.format("Player %S", totalPlayers));
@@ -22,6 +23,7 @@ public abstract class Player {
         hands = new ArrayList<Hand>();
         addHand(new Hand());
         this.dealer = dealer;
+        utils = new UtilityClass();
     }
 
     public abstract boolean getPlayerMove();
