@@ -1,6 +1,6 @@
 public class Card {
     private String suit;
-    //private String rank; Need this???
+    private String rank;
     private int value;
     private boolean faceUp;
 
@@ -34,9 +34,14 @@ public class Card {
     }
 
     /*
+     * getCardRank - an accessor method for Card Rank.
+     */
+    public String getCardRank() {
+        return this.rank;
+    }
+
+    /*
      * setCardSuit - a mutator method that changes the Card's suit.
-     *
-     * precondition: w must be positive
      */
     public void setCardSuit(String suit) {
         //if (suit <= 0 || suit > 10) {
@@ -48,8 +53,6 @@ public class Card {
 
     /*
      * setHeight - a mutator method that changes the Card's value.
-     *
-     * precondition: h must be positive
      */
     public void setCardValue(int value) {
         //if (h <= 0 || h > 11) {
@@ -71,12 +74,23 @@ public class Card {
     }
 
     /*
+     * setCardRank - a mutator method that changes the if the Card is face up or face down.
+     */
+    public void setCardRank(String rank) {
+        //if (h <= 0 || h > 11) {
+        //    throw new IllegalArgumentException();
+        //}
+        
+        this.rank = rank;
+    }
+
+    /*
      * toString - prints the card
      */
     @Override
     public String toString() {
         if (this.getCardFaceUp()) {
-            return this.suit + "," + String.valueOf(this.value);
+            return this.suit + "," + String.valueOf(this.rank);
         } else {
             return "-,-";
         }
