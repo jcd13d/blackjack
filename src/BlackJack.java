@@ -16,6 +16,7 @@ public class BlackJack extends Game {
         utils = new Utility();
         deck = new Deck();
         dealer = new BJPlayer("Dealer", true, 0);
+        keepPlaying = true;
         gameSetup();
     }
 
@@ -32,8 +33,6 @@ public class BlackJack extends Game {
     }
 
     public void playGame() {
-        gameSetup();
-
         while(keepPlaying) {
             playRound();
             keepPlaying = anotherRound();
@@ -126,6 +125,8 @@ public class BlackJack extends Game {
 
     public void playerTurns() {
         for (Player player : playerList) {
+            System.out.println("Dealer Hand: ");
+            System.out.println(dealer.hands.get(0));
             player.getPlayerMove(deck);
         }
     }

@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class TriantaEnaPlayer extends BJPlayer {
   private static int dealerStaysOn = 27;
 

@@ -71,4 +71,12 @@ public class Card {
         
         this.faceUp = isCardFaceUp;
     }
+
+    public String toString() {
+        if (this.getCardFaceUp()) {
+            return this.suit + " , " + String.valueOf(this.value);
+        } else {
+            return "-,-";
+        }
+    }
 }

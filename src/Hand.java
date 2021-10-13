@@ -61,8 +61,12 @@ public abstract class Hand implements Comparable<Hand>{
     /* 
      * printHand - prints out cards in Hand object
      */
-    public String printHand() {
-        return this.hand.toString();
+    public String toString() {
+        String strHand = " ";
+        for (Card card : this.hand) {
+            strHand.concat(card.toString()) ;
+        }
+        return strHand;
     }
 
     /* 
