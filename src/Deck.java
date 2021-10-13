@@ -55,5 +55,14 @@ public class Deck{
         return topCard;
     }
     
+    /*
+     * getTopCard - class to get the Top Card from the deck
+     */
+    public Card getTopCard(boolean faceUp) {
+        Card topCard = this.deck.get(0);
+        this.deck.remove(0);
+        topCard.setCardFaceUp(faceUp);
+        return topCard;
+    }
     
 }
