@@ -54,7 +54,7 @@ public class BlackJack extends Game {
     }
 
     public String playAgainPrompt() {
-        return "Play again? (Y or N)";
+        return "Play again? (Yes or No)";
     }
 
     public void checkHandWins() {
