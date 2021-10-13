@@ -1,3 +1,4 @@
+//Gambler interface used for force implementation of methods needed for betting card games
 interface Gambler{
 
   //Method to place a bet to be used by a player
