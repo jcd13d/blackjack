@@ -15,7 +15,7 @@ public class BJPlayer extends Player implements Gambler {
         String input;
         if (!super.isDealer()) {
             for (int i = 0; i < hands.size(); i++) {
-                System.out.println(String.format("%s's current hand: ", this.name));
+                System.out.println(String.format("\n%s's current hand: ", this.name));
                 System.out.println(hands.get(i));
 
                 input = utils.getString(getMovePrompt());
@@ -41,15 +41,23 @@ public class BJPlayer extends Player implements Gambler {
             }
         } else {
             // dealer move
+            System.out.println("\nDealer's move: ");
             for (Hand hand : hands) {
+                System.out.println(String.format("%s's current hand: ", this.name));
+                System.out.println(hand);
                 dealerLogic(deck, hand);
             }
+            hands.get(0).getHand().get(0).setCardFaceUp(true);
+            System.out.println("Reveal!");
+            System.out.println(hands.get(0).getHand());
+            System.out.printf("Dealer hand value: %s\n", hands.get(0).getHandValue());
         }
     }
 
     private void dealerLogic(Deck deck, Hand hand) {
         while (hand.getHandValue() < BJPlayer.dealerStaysOn) {
             hit(deck, hand);
+            System.out.println("Dealer Hits!");
             System.out.println(hand);
         }
     }
@@ -127,7 +135,7 @@ public class BJPlayer extends Player implements Gambler {
     }
 
     public String getMovePrompt() {
-        return "What move would you like to make? Type: 'Stand', 'Hit', 'Split', or 'Double Up'";
+        return "\nWhat move would you like to make? Type: 'Stand', 'Hit', 'Split', or 'Double Up'";
     }
 
     public String getStayPrompt() {
@@ -137,7 +145,7 @@ public class BJPlayer extends Player implements Gambler {
     }
 
     public String getBetPrompt() {
-        return String.format("%s, How much would you like to bet? Enter value between 0-%.2f", this.name, this.balance) ;
+        return String.format("\n%s, How much would you like to bet? Enter value between 0-%.2f", this.name, this.balance) ;
     }
 
     public String invalidMovePrompt() {
@@ -158,5 +166,10 @@ public class BJPlayer extends Player implements Gambler {
         System.out.println(invalidMovePrompt());
         return false;
       }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Player: %s, Balance: %s", name, balance);
     }
 }

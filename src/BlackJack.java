@@ -30,6 +30,13 @@ public class BlackJack extends Game {
         dealerTurn();
 
         checkHandWins();
+
+        playerStatus();
+    }
+
+    public void playerStatus() {
+        System.out.println();
+        playerList.forEach(System.out::println);        // bonus for this line??
     }
 
     public void playGame() {
@@ -54,23 +61,30 @@ public class BlackJack extends Game {
     }
 
     public String playAgainPrompt() {
-        return "Play again? (Yes or No)";
+        return "\nPlay again? (Yes or No)";
     }
 
     public void checkHandWins() {
+        System.out.println("\n Results! \n");
         for (BJPlayer player : playerList) {
             for (Hand hand : player.getHands()) {
                 if (hand.compareTo(dealer.getHands().get(0)) > 0) {
-                    System.out.println(String.format("%s's hand is a winner!", player.getName()));
+                    System.out.println(String.format("\n%s's hand is a winner!", player.getName()));
                     System.out.println(hand);
+                    System.out.printf("Hand value: %s\n", hand.getHandValue());
                     // win! get double money!
                     player.addWin();
                     player.incrementBalance(2 * player.getBet());
                 } else if (hand.compareTo(dealer.getHands().get(0)) == 0) {
                     // get your money back!
-                    System.out.println(String.format("%s's hand ties, money refunded.", player.getName()));
+                    System.out.println(String.format("\n%s's hand ties, money refunded.", player.getName()));
                     System.out.println(hand);
+                    System.out.printf("Hand value: %s\n", hand.getHandValue());
                     player.incrementBalance(player.getBet());
+                } else {
+                    System.out.println(String.format("\n%s's hand loses!", player.getName()));
+                    System.out.println(hand);
+                    System.out.printf("Hand value: %s\n", hand.getHandValue());
                 }
             }
             player.resetHands();
@@ -98,7 +112,7 @@ public class BlackJack extends Game {
     }
 
     public String playerBalancePrompt() {
-        return "Please enter player initial balance: ";
+        return "\nPlease enter player initial balance: ";
     }
 
     public String getPlayerName() {
@@ -106,7 +120,7 @@ public class BlackJack extends Game {
     }
 
     public String playerNamePrompt() {
-        return String.format("Player %s, please enter your name.", playerList.size() + 1);
+        return String.format("\nPlayer %s, please enter your name.", playerList.size() + 1);
     }
 
     public void openingPrompts() {
@@ -120,7 +134,7 @@ public class BlackJack extends Game {
     }
 
     public String getNumPlayersPrompt() {
-        return "Please enter the (integer) number of players that will play: ";
+        return "\nPlease enter the (integer) number of players that will play: ";
     }
 
     public void dealerTurn() {
@@ -130,7 +144,7 @@ public class BlackJack extends Game {
 
     public void playerTurns() {
         for (Player player : playerList) {
-            System.out.println("Dealer Hand: ");
+            System.out.println("\nDealer Hand: ");
             System.out.println(dealer.hands.get(0));
             player.getPlayerMove(deck);
         }
