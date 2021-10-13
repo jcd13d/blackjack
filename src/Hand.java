@@ -21,8 +21,8 @@ public abstract class Hand implements Comparable<Hand>{
      /* 
      * removeCard - removes a Card object from the hand
      */
-    public void removeCard(int i) {
-        this.hand.remove(i);
+    public Card removeCard(int i) {
+        return this.hand.remove(i);
     }
 
     /* 
