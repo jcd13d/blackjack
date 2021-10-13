@@ -76,7 +76,7 @@ public class Card {
     @Override
     public String toString() {
         if (this.getCardFaceUp()) {
-            return this.suit + " , " + String.valueOf(this.value);
+            return this.suit + "," + String.valueOf(this.value);
         } else {
             return "-,-";
         }
