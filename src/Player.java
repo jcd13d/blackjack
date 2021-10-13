@@ -36,6 +36,10 @@ public abstract class Player {
         return name;
     }
 
+    public ArrayList<Hand> getHands() {
+        return hands;
+    }
+
     public void setName(String name) {
         this.name = name;
     }
