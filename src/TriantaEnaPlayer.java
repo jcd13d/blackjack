@@ -13,9 +13,9 @@ public class TriantaEnaPlayer extends BJPlayer {
   public void getPlayerMove(Deck deck){
     if (!isDealer()){
       for (int i = 0; i < getHands().size(); i++) {
-        String move = Utility.getString(this.getMovePrompt());
+        String move = util.getString(this.getMovePrompt());
         while (!checkMove(move)){
-          move = Utility.getString(this.getMovePrompt());
+          move = util.getString(this.getMovePrompt());
         }
         if (move.equalsIgnoreCase("Stand")) {
           super.stand();
