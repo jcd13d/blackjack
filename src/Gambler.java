@@ -10,7 +10,6 @@ interface Gambler{
   //Method to set the players balance
   void setBalance(double balance);
 
-  //Method to end a turn of a player's hand
-  void endHand(boolean winner);
+  void incrementBalance(double inc);
 
-}
+  }

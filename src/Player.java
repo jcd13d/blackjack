@@ -21,7 +21,6 @@ public abstract class Player {
         this.name = name;
         numWins = 0;
         hands = new ArrayList<Hand>();
-        addHand(new Hand());
         this.dealer = dealer;
         utils = new Utility();
     }
