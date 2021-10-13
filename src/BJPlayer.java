@@ -2,8 +2,8 @@ import java.util.ArrayList;
 
 public class BJPlayer extends Player implements Gambler {
     public static int dealerStaysOn = 17;
-    double balance;
-    double bet;
+    private double balance;
+    private double bet;
 
     public BJPlayer(String name, boolean dealer, double initBalance) {
         super(name, dealer);
@@ -90,11 +90,21 @@ public class BJPlayer extends Player implements Gambler {
         return bet;
     }
 
-    public void placeBet(double bet) {
-        decrementBalance(bet);
-        this.bet = this.bet + bet;
+    //Prompt for the bet
+    //Place the bet into this player's bet value
+    //Decrement the balance available to make bets
+    public void placeBet() {
+      double betAttempt = (double) Utility.getString(getBetPrompt());
+      while (!checkBet(betAttempt)){
+        betAttempt = (double) Utility.getString(getBetPrompt());
+        }
+        decrementBalance(betAttempt);
+        this.bet = this.bet + betAttempt);
+      }
+    public void placeBet(double betAttempt) {
+      decrementBalance(betAttempt);
+      this.bet = this.bet + betAttempt);
     }
-
     public void decrementBalance(double dec) {
         // TODO Handle error for balance less than zero
         this.balance = this.balance - dec;
@@ -103,11 +113,12 @@ public class BJPlayer extends Player implements Gambler {
     public void incrementBalance(double inc) {
         this.balance = this.balance + inc;
     }
-
     public void setBalance(double balance) {
         this.balance = balance;
     }
-
+    public void setBet(double bet) {
+        this.bet = bet;
+    }
     public void endHand(boolean winner) {
         // think about if there are multiple hands, how do we handle?
         // Maybe we need to use separate method to reset bet to zero
@@ -125,14 +136,33 @@ public class BJPlayer extends Player implements Gambler {
         return "What move would you like to make? Type: 'Stand', 'Hit', 'Split', or 'Double Up'";
     }
 
-    private String getStayPrompt() {
+    public String getStayPrompt() {
         String prompt;
         prompt = String.format("%s stays!", this.name);
         return prompt;
     }
 
+    public String getBetPrompt() {
+        return String.format("How much would you like to bet? Enter value between 0-%d", this.balance) ;
+    }
+
     private String invalidMovePrompt() {
         return "Invalid Move!!";
     }
+    private boolean checkBet(double betAttempt){
+      if (betAttempt < 0 || betAttempt > this.balance){
+        return false;
+      }
+      else{ return true;}
+    }
 
+    public boolean checkMove(String move){
+      if (move.equalsIgnoreCase("Hit") || move.equalsIgnoreCase("Stand") || move.equalsIgnoreCase("Double Up") ||move.equalsIgnoreCase("Split")){
+        return true;
+      }
+      else{
+        System.out.println(invalidMovePrompt());
+        return false;
+      }
+    }
 }
