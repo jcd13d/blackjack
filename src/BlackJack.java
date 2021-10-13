@@ -147,6 +147,7 @@ public class BlackJack extends Game {
                     }
                 }
             }
+            dealer.getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
         }
     }
 
