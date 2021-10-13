@@ -122,6 +122,7 @@ public class BlackJack extends Game {
 
     public void dealerTurn() {
         dealer.getPlayerMove(deck);
+
     }
 
     public void playerTurns() {

@@ -16,7 +16,7 @@ public class BJPlayer extends Player implements Gambler {
         String input;
         if (!super.isDealer()) {
             for (int i = 0; i < hands.size(); i++) {
-                System.out.println("Your current hand: ");
+                System.out.println(String.format("%s's current hand: ", this.name));
                 System.out.println(hands.get(i));
 
                 input = utils.getString(getMovePrompt());
@@ -51,6 +51,7 @@ public class BJPlayer extends Player implements Gambler {
     private void dealerLogic(Deck deck, Hand hand) {
         while (hand.getHandValue() < BJPlayer.dealerStaysOn) {
             hit(deck, hand);
+            System.out.println(hand);
         }
     }
 
