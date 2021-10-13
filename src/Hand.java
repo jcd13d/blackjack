@@ -1,5 +1,5 @@
 import java.util.*;
-public class Hand implements Comparable{
+public class Hand implements Comparable<Hand>{
     private ArrayList<Card> hand;
     private int handValue;
 
@@ -15,6 +15,13 @@ public class Hand implements Comparable{
      */
     public void addCard(Card newCard) {
         hand.add(newCard);
+    }
+  
+     /* 
+     * removeCard - removes a Card object from the hand
+     */
+    public void removeCard(int i) {
+        this.hand.remove(i);
     }
 
     /* 
@@ -51,12 +58,30 @@ public class Hand implements Comparable{
         return this.handValue;
     }
 
-    //public String printHand() {
-    //
-    //}
+    /* 
+     * printHand - prints out cards in Hand object
+     */
+    public String printHand() {
+        return this.hand.toString();
+    }
 
-    //public int compareTo(Hand otherHand) {
-    //
-    //}
+    /* 
+     * compareTo  - comparing hand value to another hand value
+     * Overrides compareTo method per Comparable interface
+     */
+    @Override
+    public int compareTo(Hand otherHand) {
+        int cur_hand = this.getHandValue();
+        int oth_hand = otherHand.getHandValue();
+        if (cur_hand > oth_hand) {
+            return 1;
+        }
+        else if (cur_hand < oth_hand) {
+            return -1;
+        }
+        else {
+            return 0;
+        }
+    }
 
 }
