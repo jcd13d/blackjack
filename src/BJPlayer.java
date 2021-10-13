@@ -68,7 +68,7 @@ public class BJPlayer extends Player implements Gambler {
         // decrease bank by bet amount
         decrementBalance(getBet());
         // append new hand to list
-        addHand(new Hand());
+        addHand(new BJHand());
         // remove second card from first hand, add to last hand
         hands.get(hands.size() - 1).addCard(hand.removeCard(1));
         // add card to first hand
