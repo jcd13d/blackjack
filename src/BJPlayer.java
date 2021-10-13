@@ -91,6 +91,16 @@ public class BJPlayer extends Player implements Gambler {
         return bet;
     }
 
+    @Override
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    @Override
+    public void incrementBalance(double inc) {
+        this.balance = this.balance + inc;
+    }
+
     //Prompt for the bet
     //Place the bet into this player's bet value
     //Decrement the balance available to make bets
