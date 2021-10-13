@@ -17,6 +17,11 @@ public class Utility {
         return scan.nextDouble();
     }
 
+    public int getInt(String prompt){
+        System.out.println(prompt);
+        return scan.nextInt();
+    }
+
     public boolean getYesNo(String prompt) {
         System.out.println(prompt);
         String response = scan.nextLine().toLowerCase();
