@@ -17,8 +17,9 @@ public class BJPlayer extends Player implements Gambler {
         String input;
         if (!super.isDealer()) {
             for (int i = 0; i < hands.size(); i++) {
-                // ask for input
-                // based on input do conditional logic to call stay hit or split
+                System.out.println("Your current hand: ");
+                System.out.println(hands.get(i));
+
                 input = utils.getString(getMovePrompt());
 
                 if (input.equalsIgnoreCase("Stand")) {
@@ -137,7 +138,7 @@ public class BJPlayer extends Player implements Gambler {
     }
 
     public String getBetPrompt() {
-        return String.format("How much would you like to bet? Enter value between 0-%d", this.balance) ;
+        return String.format("%s, How much would you like to bet? Enter value between 0-%.2f", this.name, this.balance) ;
     }
 
     public String invalidMovePrompt() {
