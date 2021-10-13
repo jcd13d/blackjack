@@ -15,7 +15,7 @@ public abstract class Hand implements Comparable<Hand>{
      * addCard - receives a Card object and adds it to the hand
      */
     public void addCard(Card newCard) {
-        hand.add(newCard);
+        this.hand.add(newCard);
     }
   
      /* 
@@ -59,12 +59,13 @@ public abstract class Hand implements Comparable<Hand>{
     }
 
     /* 
-     * printHand - prints out cards in Hand object
+     * toString - prints out cards in Hand object
      */
+    @Override
     public String toString() {
-        String strHand = " ";
+        String strHand = " | ";
         for (Card card : this.hand) {
-            strHand.concat(card.toString()) ;
+            strHand = strHand.concat(card.toString()).concat(" | ") ;
         }
         return strHand;
     }

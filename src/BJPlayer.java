@@ -7,7 +7,6 @@ public class BJPlayer extends Player implements Gambler {
 
     public BJPlayer(String name, boolean dealer, double initBalance) {
         super(name, dealer);
-        addHand(new BJHand());
         balance = initBalance;
         bet = 0;
     }
@@ -61,7 +60,7 @@ public class BJPlayer extends Player implements Gambler {
 
     public void hit(Deck deck, Hand hand) {
         // draw from deck add to hand
-        hand.addCard(deck.getTopCard());
+        hand.addCard(deck.getTopCard(true));
     }
 
     private void split(Deck deck, Hand hand) {

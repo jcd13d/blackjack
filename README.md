@@ -1,3 +1,20 @@
+# TODO
+* justin prints in blackjack
+  * tostring in player to see their state at end
+  * winners etc
+  * loops in blackjack
+  * if you lose then dealer loses you still lose! handle earlier
+* matt
+  * prints in hand make prettier 
+  * add rank vs value for printing
+  * hand val debug
+* shilpen 
+  * player input loops
+  * Start TE
+* George 
+  * loops error checking in utils 
+
+
 # blackjack
 Terminal Black Jack game
 
