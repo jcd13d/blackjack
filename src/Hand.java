@@ -14,10 +14,10 @@ public class Hand implements Comparable<Hand>{
      * addCard - receives a Card object and adds it to the hand
      */
     public void addCard(Card newCard) {
-        this.hand.add(newCard);
+        hand.add(newCard);
     }
-
-    /* 
+  
+     /* 
      * removeCard - removes a Card object from the hand
      */
     public void removeCard(int i) {
@@ -25,7 +25,7 @@ public class Hand implements Comparable<Hand>{
     }
 
     /* 
-     * getHand - gets cards in Hand object
+     * getHand - shows cards in Hand object
      */
     public ArrayList<Card> getHand() {
         return this.hand;
