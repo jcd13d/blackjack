@@ -18,7 +18,7 @@ public class BJPlayer extends Player implements Gambler {
             for (int i = 0; i < hands.size(); i++) {
                 // ask for input
                 // based on input do conditional logic to call stay hit or split
-                input = Utility.getString(getMovePrompt());
+                input = utils.getString(getMovePrompt());
 
                 if (input.equalsIgnoreCase("Stand")) {
                     stand();
@@ -94,9 +94,9 @@ public class BJPlayer extends Player implements Gambler {
     //Place the bet into this player's bet value
     //Decrement the balance available to make bets
     public void placeBet() {
-      double betAttempt = Double.parseDouble(Utility.getString(getBetPrompt()));
+      double betAttempt = Double.parseDouble(utils.getString(getBetPrompt()));
       while (!checkBet(betAttempt)){
-        betAttempt = Double.parseDouble(Utility.getString(getBetPrompt()));
+        betAttempt = Double.parseDouble(utils.getString(getBetPrompt()));
         }
         decrementBalance(betAttempt);
         this.bet = this.bet + betAttempt;
