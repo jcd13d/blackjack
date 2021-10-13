@@ -4,10 +4,10 @@ public abstract class Player {
     static int totalPlayers = 0;
 
     String name;
-    int numWins;
+    private int numWins;
     ArrayList<Hand> hands;
-    boolean dealer;
-    Utility utils;
+    private boolean dealer;
+    private Utility utils;
 
     public Player() {
         this(String.format("Player %S", totalPlayers));

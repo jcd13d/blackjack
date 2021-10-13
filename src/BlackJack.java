@@ -18,9 +18,9 @@ public class BlackJack extends Game {
 
         getBets();
 
-        // deal
+        dealCards();
 
-        // each player plays turn
+        playerTurns();
 
         // dealer move
 
@@ -46,6 +46,16 @@ public class BlackJack extends Game {
 
     }
 
+    public void dealerTurn() {
+
+    }
+
+    public void playerTurns() {
+        for (Player player : playerList) {
+            player.getPlayerMove(deck, false);
+        }
+    }
+
     public void getBets() {
         for (BJPlayer player : playerList) {
             player.placeBet(utils.getDouble(betPrompt()));
@@ -58,7 +68,7 @@ public class BlackJack extends Game {
                 if (player.getBet() != 0) {
                     player.addHand(new Hand());
                     for (Hand hand : player.getHands()) {
-                        hand.addCard(deck.getTopCard()); // TODO add face up/down when implemented
+                        hand.addCard(deck.getTopCard(true)); // TODO add face up/down when implemented
                     }
                 }
             }
