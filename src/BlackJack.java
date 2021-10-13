@@ -61,11 +61,15 @@ public class BlackJack extends Game {
         for (BJPlayer player : playerList) {
             for (Hand hand : player.getHands()) {
                 if (hand.compareTo(dealer.getHands().get(0)) > 0) {
+                    System.out.println(String.format("%s's hand is a winner!", player.getName()));
+                    System.out.println(hand);
                     // win! get double money!
                     player.addWin();
                     player.incrementBalance(2 * player.getBet());
                 } else if (hand.compareTo(dealer.getHands().get(0)) == 0) {
                     // get your money back!
+                    System.out.println(String.format("%s's hand ties, money refunded.", player.getName()));
+                    System.out.println(hand);
                     player.incrementBalance(player.getBet());
                 }
             }
