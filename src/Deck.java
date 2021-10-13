@@ -12,6 +12,10 @@ public class Deck{
         createStandardDeck();
     }
 
+    public Deck(ArrayList<Card> deck) {
+        this.deck = deck;
+    }
+
     /* 
      * Deck - Constructor class for multiple Standard 52 card decks in one deck
      */
