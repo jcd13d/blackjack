@@ -14,14 +14,23 @@ public class Utility {
 
     public double getDouble(String prompt) {
         System.out.println(prompt);
-        double returnDouble = Double.parseDouble(scan.nextLine());
-        return returnDouble;
+        try {
+            return Double.parseDouble(scan.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a numeric value");
+            return getDouble(prompt);
+        }
+        
     }
 
     public int getInt(String prompt){
         System.out.println(prompt);
-        int returnInt = Integer.parseInt(scan.nextLine());
-        return returnInt; 
+        try {
+            return Integer.parseInt(scan.nextLine());
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a numeric value");
+            return getInt(prompt);
+        }
     }
 
     public boolean getYesNo(String prompt) {
