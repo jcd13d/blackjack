@@ -14,20 +14,22 @@ public class Utility {
 
     public double getDouble(String prompt) {
         System.out.println(prompt);
-        return scan.nextDouble();
+        double returnDouble = Double.parseDouble(scan.nextLine());
+        return returnDouble;
     }
 
     public int getInt(String prompt){
         System.out.println(prompt);
-        return scan.nextInt();
+        int returnInt = Integer.parseInt(scan.nextLine());
+        return returnInt; 
     }
 
     public boolean getYesNo(String prompt) {
         System.out.println(prompt);
-        String response = scan.nextLine().toLowerCase();
-        if (response.equals("yes")) {
+        String response = scan.nextLine();
+        if (response.equalsIgnoreCase("yes")) {
             return true;
-        } else if (response.equals("no")) {
+        } else if (response.equalsIgnoreCase("no")) {
             return false;
         } else {
             System.out.println("Please enter either 'Yes' or 'No'. ");
