@@ -1,7 +1,8 @@
 import java.util.*;
-public class Hand implements Comparable<Hand>{
-    private ArrayList<Card> hand;
-    private int handValue;
+public abstract class Hand implements Comparable<Hand>{
+    public ArrayList<Card> hand;
+    public int handValue;
+    private int bustValue;
 
     /* 
      * Deck - Constructor class for a Standard 52 card deck
@@ -32,30 +33,29 @@ public class Hand implements Comparable<Hand>{
     }
 
     /* 
+     * getBustValue - shows cards in Hand object
+     */
+    public int getBustValue() {
+        return this.bustValue;
+    }
+
+    /* 
+     * setBustValue - shows cards in Hand object
+     */
+    public void setBustValue(int bustVal) {
+        this.bustValue = bustVal;
+    }
+
+    /* 
      * getHandValue - shows cards in Hand object
      */
-    public int getHandValue() {
-        int handSum = 0;
-        int aceCounter = 0;
-        int bustValue = 21; // Might need to pass this into method depending on game
-        for (int i = 0; i < this.hand.size(); i++) {
-            Card card = this.hand.get(i);
-            int value = card.getCardValue();
-            if (value == 1) {
-                value = 11;
-                aceCounter += 1;
-            }
-            if (value >= 10) {
-                value = 10;
-            }
-            handSum += value;
-        }
-        if (aceCounter >= 1 && handSum > bustValue) {
-            handSum -= 10;
+    public abstract int getHandValue();
 
-        }
-        this.handValue = handSum;
-        return this.handValue;
+    /* 
+     * setBustValue - shows cards in Hand object
+     */
+    public void setHandValue(int handVal) {
+        this.handValue = handVal;
     }
 
     /* 
