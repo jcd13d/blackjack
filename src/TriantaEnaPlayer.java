@@ -3,18 +3,15 @@ import java.util.*;
 public class TriantaEnaPlayer extends BJPlayer {
   private static int dealerStaysOn = 27;
 
-  public void TriantaEnaPlayer(String name, boolean dealer){
+  public TriantaEnaPlayer(String name, boolean dealer){
+    super(name, dealer, 100.0);
     if(dealer){
-      super(name, dealer, 300.0);
-    }
-    else{
-      super(name, dealer, 100.0);
+      setBalance(300.0);
     }
   }
-
   @Override
   public void getPlayerMove(Deck deck){
-    if (!super.dealer){
+    if (!isDealer()){
       for (int i = 0; i < getHands().size(); i++) {
         String move = Utility.getString(this.getMovePrompt());
         while (!checkMove(move)){
@@ -30,7 +27,7 @@ public class TriantaEnaPlayer extends BJPlayer {
     }
     else{
       for(Hand currentHand : getHands()){
-        while(currentHand.getHandValue() < this.dealerStaysOn){
+        while(currentHand.getHandValue() < TriantaEnaPlayer.dealerStaysOn){
           super.hit(deck, currentHand);
         }
         super.stand();
@@ -39,12 +36,12 @@ public class TriantaEnaPlayer extends BJPlayer {
   }
 
   @Override
-  private String getMovePrompt() {
+  public String getMovePrompt() {
       return "What move would you like to make? Type: 'Stand' or 'Hit'";
   }
 
   @Override
-  private boolean checkMove(String move){
+  public boolean checkMove(String move){
     if (move.equalsIgnoreCase("Hit") || move.equalsIgnoreCase("Stand")){
       return true;
     }

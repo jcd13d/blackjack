@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.*;
 
 public class BJPlayer extends Player implements Gambler {
     public static int dealerStaysOn = 17;
@@ -11,13 +12,13 @@ public class BJPlayer extends Player implements Gambler {
         bet = 0;
     }
 
-    public boolean getPlayerMove(Deck deck, boolean dealer) {
+    public void getPlayerMove(Deck deck) {
         String input;
-        if (!dealer) {
+        if (!super.isDealer()) {
             for (int i = 0; i < hands.size(); i++) {
                 // ask for input
                 // based on input do conditional logic to call stay hit or split
-                input = utils.getString(getMovePrompt());
+                input = Utility.getString(getMovePrompt());
 
                 if (input.equalsIgnoreCase("Stand")) {
                     stand();
@@ -44,7 +45,6 @@ public class BJPlayer extends Player implements Gambler {
                 dealerLogic(deck, hand);
             }
         }
-        return true;        // should this be boolean? TODO
     }
 
     private void dealerLogic(Deck deck, Hand hand) {
@@ -53,11 +53,11 @@ public class BJPlayer extends Player implements Gambler {
         }
     }
 
-    private void stand() {
+    public void stand() {
         System.out.println(getStayPrompt());
     }
 
-    private void hit(Deck deck, Hand hand) {
+    public void hit(Deck deck, Hand hand) {
         // draw from deck add to hand
         hand.addCard(deck.getTopCard());
     }
@@ -94,16 +94,16 @@ public class BJPlayer extends Player implements Gambler {
     //Place the bet into this player's bet value
     //Decrement the balance available to make bets
     public void placeBet() {
-      double betAttempt = (double) Utility.getString(getBetPrompt());
+      double betAttempt = Double.parseDouble(Utility.getString(getBetPrompt()));
       while (!checkBet(betAttempt)){
-        betAttempt = (double) Utility.getString(getBetPrompt());
+        betAttempt = Double.parseDouble(Utility.getString(getBetPrompt()));
         }
         decrementBalance(betAttempt);
-        this.bet = this.bet + betAttempt);
+        this.bet = this.bet + betAttempt;
       }
     public void placeBet(double betAttempt) {
       decrementBalance(betAttempt);
-      this.bet = this.bet + betAttempt);
+      this.bet = this.bet + betAttempt;
     }
     public void decrementBalance(double dec) {
         // TODO Handle error for balance less than zero
@@ -146,10 +146,10 @@ public class BJPlayer extends Player implements Gambler {
         return String.format("How much would you like to bet? Enter value between 0-%d", this.balance) ;
     }
 
-    private String invalidMovePrompt() {
+    public String invalidMovePrompt() {
         return "Invalid Move!!";
     }
-    private boolean checkBet(double betAttempt){
+    public boolean checkBet(double betAttempt){
       if (betAttempt < 0 || betAttempt > this.balance){
         return false;
       }
