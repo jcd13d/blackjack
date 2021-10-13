@@ -3,10 +3,12 @@ import java.util.ArrayList;
 public class BlackJack extends Game {
     public static final int BJNumCards = 2;
 
-    ArrayList<BJPlayer> playerList;
-    int numPlayers;
-    Deck deck;
-    Utility utils;
+    private ArrayList<BJPlayer> playerList;
+    private int numPlayers;
+    private Deck deck;
+    private Utility utils;
+    private Player dealer;
+
 
     public BlackJack(){
         super("Black Jack", 6);
@@ -22,10 +24,15 @@ public class BlackJack extends Game {
 
         playerTurns();
 
-        // dealer move
+        dealerTurn();
 
         // handle wins/losses
 
+    }
+
+    public boolean checkWin(Hand playerHand, Hand dealerHand) {
+        // should have correct value from hand class
+        return playerHand
     }
 
     public void endGame(){
@@ -43,11 +50,11 @@ public class BlackJack extends Game {
     }
 
     public int getNumPlayers() {
-
+        // prompt players etc
     }
 
     public void dealerTurn() {
-
+        dealer.getPlayerMove(deck, true);
     }
 
     public void playerTurns() {
@@ -58,7 +65,7 @@ public class BlackJack extends Game {
 
     public void getBets() {
         for (BJPlayer player : playerList) {
-            player.placeBet(utils.getDouble(betPrompt()));
+            player.placeBet();
         }
     }
 
@@ -66,7 +73,7 @@ public class BlackJack extends Game {
         for (int i = 0; i < BlackJack.BJNumCards; i++) {
             for (BJPlayer player : playerList) {
                 if (player.getBet() != 0) {
-                    player.addHand(new Hand());
+                    player.addHand(new BJHand());
                     for (Hand hand : player.getHands()) {
                         hand.addCard(deck.getTopCard(true)); // TODO add face up/down when implemented
                     }
@@ -75,8 +82,4 @@ public class BlackJack extends Game {
         }
     }
 
-    public String betPrompt() {
-        return "Please enter decimal number for dollar amount to bet: ";
-    }
-    
 }

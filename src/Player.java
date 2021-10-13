@@ -7,7 +7,7 @@ public abstract class Player {
     private int numWins;
     ArrayList<Hand> hands;
     private boolean dealer;
-    private Utility utils;
+    protected Utility utils;
 
     public Player() {
         this(String.format("Player %S", totalPlayers));
