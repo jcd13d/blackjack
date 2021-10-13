@@ -8,6 +8,7 @@ public class BJPlayer extends Player implements Gambler {
 
     public BJPlayer(String name, boolean dealer, double initBalance) {
         super(name, dealer);
+        addHand(new BJHand());
         balance = initBalance;
         bet = 0;
     }
