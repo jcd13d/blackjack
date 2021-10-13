@@ -85,6 +85,7 @@ public class BlackJack extends Game {
             playerName = getPlayerName();
             initBalance = getPlayerBalance();
             playerList.add(new BJPlayer(playerName, false, initBalance));
+            playerList.get(i).addHand(new BJHand());
         }
     }
 

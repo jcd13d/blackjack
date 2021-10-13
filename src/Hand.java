@@ -59,8 +59,9 @@ public abstract class Hand implements Comparable<Hand>{
     }
 
     /* 
-     * printHand - prints out cards in Hand object
+     * toString - prints out cards in Hand object
      */
+    @Override
     public String toString() {
         String strHand = " ";
         for (Card card : this.hand) {
