@@ -25,7 +25,7 @@ public abstract class Player {
         utils = new Utility();
     }
 
-    public abstract boolean getPlayerMove(Deck deck, boolean dealer);
+    public abstract void getPlayerMove(Deck deck);
 
     public static int getTotalPlayers() {
         return totalPlayers;
@@ -61,6 +61,10 @@ public abstract class Player {
 
     public void addHand(Hand hand) {
         hands.add(hand);
+    }
+
+    public void resetHands() {
+        hands = new ArrayList<>();
     }
 
 }
