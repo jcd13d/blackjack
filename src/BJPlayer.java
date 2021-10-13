@@ -110,23 +110,6 @@ public class BJPlayer extends Player implements Gambler {
         this.balance = this.balance - dec;
     }
 
-    public void incrementBalance(double inc) {
-        this.balance = this.balance + inc;
-    }
-    public void setBalance(double balance) {
-        this.balance = balance;
-    }
-    public void setBet(double bet) {
-        this.bet = bet;
-    }
-    public void endHand(boolean winner) {
-        // think about if there are multiple hands, how do we handle?
-        // Maybe we need to use separate method to reset bet to zero
-        if (winner) {
-            incrementBalance(2.0*getBet());
-        }
-    }
-
     public void clearHand() {
         hands = new ArrayList<Hand>();
         bet = 0;

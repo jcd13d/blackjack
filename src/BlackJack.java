@@ -15,7 +15,7 @@ public class BlackJack extends Game {
         utils = new Utility();
     }
 
-    public void playGame() {
+    public void playRound() {
         gameSetup();
 
         getBets();
@@ -26,13 +26,28 @@ public class BlackJack extends Game {
 
         dealerTurn();
 
-        // handle wins/losses
+        checkHandWins();
 
     }
 
-    public boolean checkWin(Hand playerHand, Hand dealerHand) {
-        // should have correct value from hand class
-        return playerHand
+    public void playGame() {
+        // rounds on loop
+
+    }
+
+    public void checkHandWins() {
+        for (BJPlayer player : playerList) {
+            for (Hand hand : player.getHands()) {
+                if (hand.compareTo(dealer.getHands().get(0)) > 0) {
+                    // win! get double money!
+                    player.addWin();
+                    player.incrementBalance(2 * player.getBet());
+                } else if (hand.compareTo(dealer.getHands().get(0)) == 0) {
+                    // get your money back!
+                    player.incrementBalance(player.getBet());
+                }
+            }
+        }
     }
 
     public void endGame(){
