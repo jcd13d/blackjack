@@ -55,7 +55,7 @@ public class Hand implements Comparable{
     //
     //}
 
-    //public int CompareTo(Hand otherHand) {
+    //public int compareTo(Hand otherHand) {
     //
     //}
 
