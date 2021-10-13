@@ -18,7 +18,10 @@ public class BJHand extends Hand{
         }
         if (aceCounter >= 1 && handSum > bustValue) {
             handSum -= 10;
-
+        }
+        if (handSum > 21) {
+            this.handValue = 0;
+            return this.handValue;
         }
         this.handValue = handSum;
         return this.handValue;
