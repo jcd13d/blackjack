@@ -61,8 +61,6 @@ public class Card {
 
     /*
      * setHeight - a mutator method that changes the if the Card is face up or face down.
-     *
-     * precondition: h must be positive
      */
     public void setCardFaceUp(boolean isCardFaceUp) {
         //if (h <= 0 || h > 11) {
@@ -72,6 +70,10 @@ public class Card {
         this.faceUp = isCardFaceUp;
     }
 
+    /*
+     * toString - prints the card
+     */
+    @Override
     public String toString() {
         if (this.getCardFaceUp()) {
             return this.suit + " , " + String.valueOf(this.value);
