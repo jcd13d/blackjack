@@ -139,13 +139,17 @@ public class BlackJack extends Game {
     }
 
     public void dealCards() {
+
+        for (BJPlayer player_init : playerList) {
+            if (player_init.getBet() != 0) {
+                player_init.addHand(new BJHand());
+            }
+        }
+
         for (int i = 0; i < BlackJack.BJNumCards; i++) {
             for (BJPlayer player : playerList) {
-                if (player.getBet() != 0) {
-                    player.addHand(new BJHand());
-                    for (Hand hand : player.getHands()) {
-                        hand.addCard(deck.getTopCard(true));
-                    }
+                for (Hand hand : player.getHands()) {
+                    hand.addCard(deck.getTopCard(true));
                 }
             }
             dealer.getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
