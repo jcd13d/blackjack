@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.*;
 
 public class BJPlayer extends Player implements Gambler {
     public static int dealerStaysOn = 17;
