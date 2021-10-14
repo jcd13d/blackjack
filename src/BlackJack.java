@@ -88,6 +88,7 @@ public class BlackJack extends Game {
                 }
             }
             player.resetHands();
+            dealer.resetHands();
         }
     }
 
