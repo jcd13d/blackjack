@@ -17,6 +17,11 @@ public class BJPlayer extends Player implements Gambler {
             for (int i = 0; i < hands.size(); i++) {
                 System.out.println(String.format("\n%s's current hand: ", this.name));
                 System.out.println(hands.get(i));
+                System.out.println(hands.get(i).getHandValue());
+
+                if (earlyHandStopCheck(i)) {
+                    break; // does this break the for loop?
+                }
 
                 input = utils.getString(getMovePrompt());
 
@@ -52,6 +57,26 @@ public class BJPlayer extends Player implements Gambler {
             System.out.println(hands.get(0).getHand());
             System.out.printf("Dealer hand value: %s\n", hands.get(0).getHandValue());
         }
+    }
+
+    private boolean earlyHandStopCheck(int handIndex) {
+        boolean earlyStop = false;
+        System.out.printf("bust value: %s\n", hands.get(handIndex).getBustValue());
+        if (hands.get(handIndex).getHandValue() > hands.get(handIndex).getBustValue()) {
+            // bust
+            System.out.println(String.format("\n%s busted!", this.getName()));
+            System.out.println(hands.get(handIndex));
+            hands.remove(handIndex);
+        } else if ((hands.get(handIndex).getHandValue() == hands.get(handIndex).getBustValue()) &
+                (hands.get(handIndex).getHand().size() == 2)){
+            // blackjack
+            System.out.println(String.format("\n%s has blackjack!", this.getName()));
+            System.out.println(hands.get(handIndex));
+            this.incrementBalance(2 * this.getBet());
+            hands.remove(handIndex);
+        }
+
+        return earlyStop;
     }
 
     private void dealerLogic(Deck deck, Hand hand) {
