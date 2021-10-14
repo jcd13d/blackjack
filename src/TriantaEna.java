@@ -1,8 +1,9 @@
-public class TriantaEna extends Game {
+public class TriantaEna extends BlackJack {
 
 
     public TriantaEna() {
-      super("Trianta Ena", 7);
+      super("Trianta Ena");
+
     }
 
     public void playGame() {
@@ -14,8 +15,8 @@ public class TriantaEna extends Game {
     }
 
     public void checkForWin(){
-        
+
     }
-    
+
 
 }

@@ -12,7 +12,7 @@ public class BlackJack extends Game {
 
 
     public BlackJack(){
-        super("Black Jack", 6);
+        super("Black Jack");
         utils = new Utility();
         deck = new Deck();
         deck.shuffleDeck();
