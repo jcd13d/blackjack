@@ -52,7 +52,7 @@ public abstract class Hand implements Comparable<Hand>{
     public abstract int getHandValue();
 
     /* 
-     * setBustValue - shows cards in Hand object
+     * setHandValue - sets hand value in Hand object
      */
     public void setHandValue(int handVal) {
         this.handValue = handVal;

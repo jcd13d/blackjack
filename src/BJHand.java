@@ -1,5 +1,9 @@
 public class BJHand extends Hand{
     private int bustValue = 21;
+
+    public BJHand() {
+        setBustValue(21);
+    }
     @Override
     public int getHandValue() {
         int handSum = 0;
