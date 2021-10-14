@@ -109,7 +109,8 @@ public class Deck{
     public void recycleCards(ArrayList<Card> hand) {
         for (int i = 0; i < hand.size(); i++) {
             Card c = hand.remove(i);
-            this.deck.add(c);
+            int endOfDeck = this.deck.size();
+            this.deck.add(endOfDeck, c);
         }
     }
 }
