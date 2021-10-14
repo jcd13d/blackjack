@@ -15,6 +15,7 @@ public class BlackJack extends Game {
         super("Black Jack", 6);
         utils = new Utility();
         deck = new Deck();
+        deck.shuffleDeck();
         dealer = new BJPlayer("Dealer", true, 0);
         keepPlaying = true;
         gameSetup();
@@ -86,10 +87,12 @@ public class BlackJack extends Game {
                     System.out.println(hand);
                     System.out.printf("Hand value: %s\n", hand.getHandValue());
                 }
+                deck.recycleCards(hand.getHand());
             }
             player.resetHands();
-            dealer.resetHands();
         }
+        deck.recycleCards(dealer.getHands().get(0).getHand());
+        dealer.resetHands();
     }
 
     public void gameSetup() {

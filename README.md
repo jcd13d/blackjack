@@ -1,9 +1,13 @@
 # TODO
 * justin prints in blackjack
   * tostring in player to see their state at end
+    * done
   * winners etc
+    * done
   * loops in blackjack
+    * need to do error checking loops
   * if you lose then dealer loses you still lose! handle earlier
+    * did this and did it for blackjack
 * matt
   * prints in hand make prettier 
   * add rank vs value for printing

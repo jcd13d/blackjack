@@ -19,7 +19,7 @@ public class BJPlayer extends Player implements Gambler {
                 System.out.println(hands.get(i));
                 System.out.printf("Hand Value: %s\n", hands.get(i).getHandValue());
 
-                if (earlyHandStopCheck(i)) {
+                if (earlyHandStopCheck(i, deck)) {
                     break; // does this break the for loop?
                 }
 
@@ -59,12 +59,13 @@ public class BJPlayer extends Player implements Gambler {
         }
     }
 
-    private boolean earlyHandStopCheck(int handIndex) {
+    private boolean earlyHandStopCheck(int handIndex, Deck deck) {
         boolean earlyStop = false;
         if (hands.get(handIndex).getHandValue() == 0) {
             // bust
             System.out.println(String.format("\n%s busted!", this.getName()));
             System.out.println(hands.get(handIndex));
+            deck.recycleCards(hands.get(handIndex).getHand());
             hands.remove(handIndex);
             earlyStop = true;
         } else if ((hands.get(handIndex).getHandValue() == hands.get(handIndex).getBustValue()) &
@@ -73,6 +74,7 @@ public class BJPlayer extends Player implements Gambler {
             System.out.println(String.format("\n%s has blackjack!", this.getName()));
             System.out.println(hands.get(handIndex));
             this.incrementBalance(2 * this.getBet());
+            deck.recycleCards(hands.get(handIndex).getHand());
             hands.remove(handIndex);
             earlyStop = true;
         }
@@ -80,7 +82,7 @@ public class BJPlayer extends Player implements Gambler {
     }
 
     private void dealerLogic(Deck deck, Hand hand) {
-        while (hand.getHandValue() < BJPlayer.dealerStaysOn) {
+        while ((hand.getHandValue() < BJPlayer.dealerStaysOn) & hand.getHandValue() != 0) {
             hit(deck, hand);
             System.out.println("Dealer Hits!");
             System.out.println(hand);
