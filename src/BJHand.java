@@ -11,12 +11,12 @@ public class BJHand extends Hand{
         for (int i = 0; i < this.hand.size(); i++) {
             Card card = this.hand.get(i);
             int value = card.getCardValue();
+            if (value >= 10) {
+                value = 10;
+            }
             if (value == 1) {
                 value = 11;
                 aceCounter += 1;
-            }
-            if (value >= 10) {
-                value = 10;
             }
             handSum += value;
         }

@@ -105,4 +105,11 @@ public class Deck{
         topCard.setCardFaceUp(faceUp);
         return topCard;
     } 
+
+    public void recycleCards(ArrayList<Card> hand) {
+        for (int i = 0; i < hand.size(); i++) {
+            Card c = hand.remove(i);
+            this.deck.add(c);
+        }
+    }
 }
