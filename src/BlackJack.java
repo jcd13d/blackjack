@@ -13,6 +13,7 @@ public class BlackJack extends Game {
     protected int maxPlayers;
 
 
+    // Blackjack constructor initializing necessary variables
     public BlackJack(){
         super("Black Jack");
         utils = new Utility();
@@ -26,6 +27,8 @@ public class BlackJack extends Game {
     public BlackJack(String name){
         super(name);
     }
+
+    // logic associated with playing a round of blackjack
     public void playRound() {
         getBets();
 
@@ -40,6 +43,7 @@ public class BlackJack extends Game {
         playerStatus();
     }
 
+    // check status of the player - if they have run out of money
     public void playerStatus() {
         System.out.println();
         playerList.forEach(System.out::println);        // bonus for this line??
@@ -52,6 +56,7 @@ public class BlackJack extends Game {
         }
     }
 
+    // main loop for playing a session of blackjack
     public void playGame() {
         while(keepPlaying) {
             playRound();
@@ -64,6 +69,7 @@ public class BlackJack extends Game {
         }
     }
 
+    // method to prompt and get user input on playing another round
     public boolean anotherRound() {
         return utils.getYesNo(playAgainPrompt());
     }
@@ -72,6 +78,7 @@ public class BlackJack extends Game {
         return "\nPlay again? (Yes or No)";
     }
 
+    // logic to handle hand status and payouts at the end of a round
     public void checkHandWins() {
         System.out.println("\n Results! \n");
         for (Gambler player : playerList) {
@@ -102,6 +109,7 @@ public class BlackJack extends Game {
         dealer.resetHands();
     }
 
+    // General setup that happens at the beginning of each game
     public void gameSetup() {
 
         do {
@@ -122,10 +130,12 @@ public class BlackJack extends Game {
         }
     }
 
+    // prompt and get start balance from user
     public double getPlayerBalance() {
         return utils.getDouble(playerBalancePrompt());
     }
 
+    // Check for valid balance
     private boolean playerBalanceCheck(double balance, double balanceLimit) {
         System.out.println(balance);
         return !((balance > 0) & (balance < balanceLimit));
@@ -143,6 +153,7 @@ public class BlackJack extends Game {
         return String.format("\nPlayer %s, please enter your name.", playerList.size() + 1);
     }
 
+    // prompt and logic to get input for number of players
     public int getNumPlayers() {
         // prompt players etc
         return utils.getInt(getNumPlayersPrompt());
@@ -152,14 +163,17 @@ public class BlackJack extends Game {
         return String.format("\nPlease enter the (integer) number of players that will play (between 1 and %s players): ", maxPlayers);
     }
 
+    // ensure valid number of players
     private boolean getNumPlayersCheck(int input) {
         return !((input >= 1) & (input <= maxPlayers));
     }
 
+    // dealer move
     public void dealerTurn() {
         dealer.getPlayerMove(deck);
     }
 
+    // wrapper to handle all players taking their turns
     public void playerTurns() {
         for (Gambler player : playerList) {
             if (!player.getPlayingRound()){ continue;}
@@ -169,6 +183,7 @@ public class BlackJack extends Game {
         }
     }
 
+    // facilitate getting bets from each player
     public void getBets() {
         for (Gambler player : playerList) {
             if(player.getPlayingRound()) {
@@ -188,7 +203,9 @@ public class BlackJack extends Game {
       return this.dealer;
     }
 
+    // deal cards to each player
     public void dealCards() {
+        // add hands if player has bet
         for (Gambler player_init : playerList) {
             if (player_init.getBet() != 0) {
                 player_init.addHand(new BJHand());
@@ -197,6 +214,7 @@ public class BlackJack extends Game {
 
         dealer.addHand(new BJHand());
 
+        // two cards delt to each players hand
         for (int i = 0; i < BlackJack.BJNumCards; i++) {
             for (Gambler player : playerList) {
                 for (Hand hand : player.getHands()) {
@@ -206,10 +224,5 @@ public class BlackJack extends Game {
             dealer.getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
         }
     }
-
-    /*public static void main(String[] args) {
-        Game bjgame = new BlackJack();
-        bjgame.playGame();
-    }*/
 
 }
