@@ -64,12 +64,6 @@ public class BlackJack extends Game {
         }
     }
 
-    @Override
-    public void endGame() {
-
-    }
-
-
     public boolean anotherRound() {
         return utils.getYesNo(playAgainPrompt());
     }
@@ -109,7 +103,6 @@ public class BlackJack extends Game {
     }
 
     public void gameSetup() {
-        openingPrompts();
 
         do {
             numPlayers = getNumPlayers();
@@ -130,7 +123,6 @@ public class BlackJack extends Game {
     }
 
     public double getPlayerBalance() {
-        // TODO add error checking
         return utils.getDouble(playerBalancePrompt());
     }
 
@@ -151,13 +143,8 @@ public class BlackJack extends Game {
         return String.format("\nPlayer %s, please enter your name.", playerList.size() + 1);
     }
 
-    public void openingPrompts() {
-        // TODO print opening prompts
-    }
-
     public int getNumPlayers() {
         // prompt players etc
-        // TODO input checking - put limit on players
         return utils.getInt(getNumPlayersPrompt());
     }
 
