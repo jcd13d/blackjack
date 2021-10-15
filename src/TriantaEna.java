@@ -40,7 +40,6 @@ public class TriantaEna extends BlackJack {
     @Override
     public void gameSetup() {
         maxPlayers = 7;
-        super.openingPrompts();
         super.numPlayers = getNumPlayers();
         while(!checkNumPlayers(super.numPlayers)){
             System.out.println("Incorrect number of players! Please choose between 1-7.");
