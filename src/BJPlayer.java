@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class BJPlayer extends Player implements Gambler {
+public class BJPlayer extends Gambler {
     public static int dealerStaysOn = 17;
     private double balance;
     private double bet;
@@ -125,6 +125,9 @@ public class BJPlayer extends Player implements Gambler {
     public double getBet() {
         return bet;
     }
+    public double getBalance(){
+      return this.balance;
+    }
 
     @Override
     public void setBalance(double balance) {
@@ -193,6 +196,11 @@ public class BJPlayer extends Player implements Gambler {
         System.out.println(invalidMovePrompt());
         return false;
       }
+    }
+
+    @Override
+    public int compareTo(Gambler otherPlayer) {
+        return Double.compare(this.getBalance(), otherPlayer.getBalance());
     }
 
     @Override

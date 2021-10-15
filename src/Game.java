@@ -1,17 +1,13 @@
 public abstract class Game {
-    
-    String gameName;
-    int numPlayers;
 
-    public Game(String gameName, int numPlayers){
+    String gameName;
+
+    public Game(String gameName){
         this.gameName = gameName;
-        this.numPlayers = numPlayers;
     }
 
     public abstract void playGame();
 
     public abstract void endGame();
-
-    public abstract void checkForWin();
 
 }
