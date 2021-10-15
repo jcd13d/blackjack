@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class BlackJack extends Game {
     public static final int BJNumCards = 2;
 
-    private ArrayList<BJPlayer> playerList;
-    private int numPlayers;
-    private Deck deck;
-    private Utility utils;
-    private Player dealer;
-    private boolean keepPlaying;
+    protected ArrayList<Gambler> playerList;
+    protected int numPlayers;
+    protected Deck deck;
+    public Utility utils;
+    protected Gambler dealer;
+    protected boolean keepPlaying;
 
 
     public BlackJack(){
@@ -20,7 +20,9 @@ public class BlackJack extends Game {
         keepPlaying = true;
         gameSetup();
     }
-
+    public BlackJack(String name){
+        super(name);
+    }
     public void playRound() {
         getBets();
 
@@ -52,10 +54,6 @@ public class BlackJack extends Game {
 
     }
 
-    @Override
-    public void checkForWin() {
-
-    }
 
     public boolean anotherRound() {
         return utils.getYesNo(playAgainPrompt());
@@ -67,7 +65,7 @@ public class BlackJack extends Game {
 
     public void checkHandWins() {
         System.out.println("\n Results! \n");
-        for (BJPlayer player : playerList) {
+        for (Gambler player : playerList) {
             for (Hand hand : player.getHands()) {
                 if (hand.compareTo(dealer.getHands().get(0)) > 0) {
                     System.out.println(String.format("\n%s's hand is a winner!", player.getName()));
@@ -143,7 +141,6 @@ public class BlackJack extends Game {
 
     public void dealerTurn() {
         dealer.getPlayerMove(deck);
-
     }
 
     public void playerTurns() {
@@ -155,14 +152,23 @@ public class BlackJack extends Game {
     }
 
     public void getBets() {
-        for (BJPlayer player : playerList) {
+        for (Gambler player : playerList) {
             player.placeBet();
         }
     }
+    public void setPlayerList(ArrayList<Gambler> list){
+      this.playerList = list;
+    }
+    public ArrayList<Gambler> getPlayerList(){
+      return this.playerList;
+    }
+
+    public Gambler getDealer(){
+      return this.dealer;
+    }
 
     public void dealCards() {
-
-        for (BJPlayer player_init : playerList) {
+        for (Gambler player_init : playerList) {
             if (player_init.getBet() != 0) {
                 player_init.addHand(new BJHand());
             }
@@ -171,7 +177,7 @@ public class BlackJack extends Game {
         dealer.addHand(new BJHand());
 
         for (int i = 0; i < BlackJack.BJNumCards; i++) {
-            for (BJPlayer player : playerList) {
+            for (Gambler player : playerList) {
                 for (Hand hand : player.getHands()) {
                     hand.addCard(deck.getTopCard(true));
                 }
@@ -180,9 +186,9 @@ public class BlackJack extends Game {
         }
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         Game bjgame = new BlackJack();
         bjgame.playGame();
-    }
+    }*/
 
 }

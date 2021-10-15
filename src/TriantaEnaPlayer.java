@@ -1,4 +1,4 @@
-public class TriantaEnaPlayer extends BJPlayer {
+public class TriantaEnaPlayer extends BJPlayer{
   private static int dealerStaysOn = 27;
 
   public TriantaEnaPlayer(String name, boolean dealer){
@@ -47,5 +47,9 @@ public class TriantaEnaPlayer extends BJPlayer {
       System.out.println(super.invalidMovePrompt());
       return false;
     }
+  }
+  @Override
+  public int compareTo(Gambler otherPlayer) {
+      return Double.compare(this.getBalance(), otherPlayer.getBalance());
   }
 }
