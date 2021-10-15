@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+// blackjack class handles the logic for playing the blackjack game
 public class BlackJack extends Game {
     public static final int BJNumCards = 2;
     private double balanceLimit = 100000;
