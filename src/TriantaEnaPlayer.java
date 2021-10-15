@@ -9,8 +9,11 @@ public class TriantaEnaPlayer extends BJPlayer{
   }
   @Override
   public void getPlayerMove(Deck deck){
-    if (!isDealer()){
+    if (!super.isDealer()){
       for (int i = 0; i < getHands().size(); i++) {
+        System.out.println(String.format("\n%s's current hand: ", super.name));
+        System.out.println(getHands().get(i));
+        System.out.printf("Hand Value: %s\n", getHands().get(i).getHandValue());
         String move = utils.getString(this.getMovePrompt());
         while (!checkMove(move)){
           move = utils.getString(this.getMovePrompt());
@@ -24,12 +27,26 @@ public class TriantaEnaPlayer extends BJPlayer{
       }
     }
     else{
-      for(Hand currentHand : getHands()){
-        while(currentHand.getHandValue() < TriantaEnaPlayer.dealerStaysOn){
-          super.hit(deck, currentHand);
-        }
-        super.stand();
+      // dealer move
+      System.out.println("\nDealer's move: ");
+      System.out.println("\nDealer's move: ");
+      for (Hand hand : getHands()) {
+        System.out.println(String.format("%s's current hand: ", this.name));
+        System.out.println(hand);
+        this.dealerLogic(deck, hand);
       }
+      getHands().get(0).getHand().get(0).setCardFaceUp(true);
+      System.out.println("Reveal!");
+      System.out.println(getHands().get(0).getHand());
+      System.out.printf("Dealer hand value: %s\n", getHands().get(0).getHandValue());
+    }
+  }
+
+  private void dealerLogic(Deck deck, Hand hand) {
+    while ((hand.getHandValue() < TriantaEnaPlayer.dealerStaysOn) & hand.getHandValue() != 0) {
+      hit(deck, hand);
+      System.out.println("Dealer Hits!");
+      System.out.println(hand);
     }
   }
 

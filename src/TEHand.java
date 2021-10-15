@@ -1,4 +1,5 @@
 public class TEHand extends BJHand {
-//    @Override
-//    private int bustValue = 31;
+    public TEHand() {
+        super(31);
+    }
 }

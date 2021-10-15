@@ -38,7 +38,6 @@ public class TriantaEna extends BlackJack {
         super.numPlayers = getNumPlayers();
         super.playerList = new ArrayList<>();
         String playerName;
-        double initBalance;
 
         for (int i = 0; i < numPlayers; i++) {
             // add player to list init w info needed
