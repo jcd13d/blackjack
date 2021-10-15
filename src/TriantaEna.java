@@ -90,7 +90,7 @@ public class TriantaEna extends BlackJack {
           break;
         }
         else{
-          boolean decision = getDecision(player.getName());
+          boolean decision = getDealerDecision(player.getName());
           if (decision){
             //If the player chooses to be the banker the balances of the player and current banker are swapped
             double tempBalance = player.getBalance();
@@ -140,7 +140,7 @@ public class TriantaEna extends BlackJack {
     public String beDealerPrompt(String name) {
         return String.format("\nPlayer %s, would you like to be the Banker? (Yes or No)", name);
     }
-    public boolean getPlayDecision(String name) {
+    public boolean getDealerDecision(String name) {
         return utils.getYesNo(beDealerPrompt(name));
     }
 
