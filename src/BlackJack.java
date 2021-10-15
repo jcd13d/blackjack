@@ -40,11 +40,23 @@ public class BlackJack extends Game {
     public void playerStatus() {
         System.out.println();
         playerList.forEach(System.out::println);        // bonus for this line??
+        for(Gambler player : playerList){
+            if(player.getBalance() <= 0){
+                System.out.println(String.format("\nPlayer %s went broke! Player %s was removed!", player.getName(), player.getName()));
+                playerList.remove(player);
+                break;
+            }
+        }
     }
 
     public void playGame() {
         while(keepPlaying) {
             playRound();
+            if ( playerList.size() == 0) {
+                keepPlaying = false;
+                System.out.println("No more players playing! Game Ended");
+                break;
+            }
             keepPlaying = anotherRound();
         }
     }
