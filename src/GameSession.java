@@ -1,7 +1,8 @@
-public class GameSession extends Utility{
-
+public class GameSession {
+    protected Utility utils;
     
     public GameSession(){
+        utils = new Utility();
     }
 
     public void startSession(){
@@ -10,7 +11,7 @@ public class GameSession extends Utility{
         System.out.println("0 - Quit");
         System.out.println("1 - Black Jack");
         System.out.println("2 - Trianta Ena");
-        String gameSelection = super.getString("");
+        String gameSelection = utils.getString("");
         int gameNumber = 0;
 
         try {
