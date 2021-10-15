@@ -4,11 +4,13 @@ public class BJPlayer extends Gambler {
     public static int dealerStaysOn = 17;
     private double balance;
     private double bet;
+    private boolean playingRound;
 
     public BJPlayer(String name, boolean dealer, double initBalance) {
         super(name, dealer);
         balance = initBalance;
         bet = 0;
+        playingRound = true;
     }
 
     public void getPlayerMove(Deck deck) {
@@ -134,6 +136,10 @@ public class BJPlayer extends Gambler {
         this.balance = balance;
     }
 
+    public void setBet(double bet){
+        this.bet = bet;
+    }
+
     @Override
     public void incrementBalance(double inc) {
         this.balance = this.balance + inc;
@@ -196,6 +202,14 @@ public class BJPlayer extends Gambler {
         System.out.println(invalidMovePrompt());
         return false;
       }
+    }
+
+    public void setPlayingRound(boolean b){
+        this.playingRound = b;
+    }
+
+    public boolean getPlayingRound(){
+        return this.playingRound;
     }
 
     @Override

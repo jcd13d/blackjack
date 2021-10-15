@@ -181,7 +181,12 @@ public class BlackJack extends Game {
 
     public void getBets() {
         for (Gambler player : playerList) {
-            player.placeBet();
+            if(player.getPlayingRound()) {
+                player.placeBet();
+            }
+            else{
+                player.setBet(0);
+            }
         }
     }
     public void setPlayerList(ArrayList<Gambler> list){
