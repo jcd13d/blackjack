@@ -1,3 +1,9 @@
+# TODO 101/15
+* opening prompt error handling 
+* remove extra print for when you input bet value 
+* TE num players prompt - need to make a variable in BJ then change that "maxPlayers" 
+
+
 # TODO
 * justin prints in blackjack
   * tostring in player to see their state at end

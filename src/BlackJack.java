@@ -10,6 +10,7 @@ public class BlackJack extends Game {
     public Utility utils;
     protected Gambler dealer;
     protected boolean keepPlaying;
+    protected int maxPlayers;
 
 
     public BlackJack(){
@@ -19,6 +20,7 @@ public class BlackJack extends Game {
         deck.shuffleDeck();
         dealer = new BJPlayer("Dealer", true, 0);
         keepPlaying = true;
+        maxPlayers = 10;
         gameSetup();
     }
     public BlackJack(String name){
@@ -160,7 +162,7 @@ public class BlackJack extends Game {
     }
 
     public String getNumPlayersPrompt() {
-        return "\nPlease enter the (integer) number of players that will play (between 1 and 10 players): ";
+        return String.format("\nPlease enter the (integer) number of players that will play (between 1 and %s players): ", maxPlayers);
     }
 
     private boolean getNumPlayersCheck(int input) {
