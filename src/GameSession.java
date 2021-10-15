@@ -11,7 +11,14 @@ public class GameSession extends Utility{
         System.out.println("1 - Black Jack");
         System.out.println("2 - Trianta Ena");
         String gameSelection = super.getString("");
-        int gameNumber = Integer.parseInt(gameSelection);
+        int gameNumber = 0;
+
+        try {
+            gameNumber = Integer.parseInt(gameSelection);
+        } catch (NumberFormatException e) {
+            System.out.println("Please enter a 0, 1, or 2 to select an option.");
+            startSession();
+        }
 
         if (gameNumber == 1) {
             // Start Black Jack game 
@@ -22,8 +29,12 @@ public class GameSession extends Utility{
             // Start Trianta Ena
             TriantaEna TEgame = new TriantaEna();
             TEgame.playGame();
-
+ 
+        } else if (gameNumber < 0 | gameNumber > 2) {
+            System.out.println("Please enter a 0, 1, or 2 to select an option.");
+            startSession();
         }
+
 
     }
 }
