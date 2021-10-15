@@ -166,7 +166,7 @@ public class BlackJack extends Game {
     }
 
     private boolean getNumPlayersCheck(int input) {
-        return !((input >= 1) & (input <= 10));
+        return !((input >= 1) & (input <= maxPlayers));
     }
 
     public void dealerTurn() {
