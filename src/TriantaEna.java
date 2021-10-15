@@ -41,6 +41,10 @@ public class TriantaEna extends BlackJack {
     public void gameSetup() {
         super.openingPrompts();
         super.numPlayers = getNumPlayers();
+        while(!checkNumPlayers(super.numPlayers)){
+            System.out.println("Incorrect number of players! Please choose between 1-7.");
+            super.numPlayers = getNumPlayers();
+        }
         super.playerList = new ArrayList<>();
         String playerName;
 
@@ -55,11 +59,12 @@ public class TriantaEna extends BlackJack {
     public void dealCards() {
         for (int i = 0; i < TriantaEna.TENumCards; i++) {
             for (Gambler player : getPlayerList()) {
+                if(!player.getPlayingRound()) { continue;}
                 for (Hand hand : player.getHands()) {
                     hand.addCard(deck.getTopCard(true));
                 }
             }
-            getDealer().getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
+            getDealer().getHands().get(0).addCard(deck.getTopCard(false));
         }
     }
 
@@ -116,6 +121,16 @@ public class TriantaEna extends BlackJack {
                 System.out.printf("Dealt Hand value: %s\n", hand.getHandValue());
             }
         }
+        for (Hand hand : dealer.getHands()) {
+            System.out.println(String.format("\n%s's current hand:", dealer.getName()));
+            System.out.println(hand);
+            System.out.printf("Dealt Hand value: %s\n", hand.getHandValue());
+        }
+    }
+
+    public boolean checkNumPlayers(int numPlayers){
+        if (numPlayers <= 7 & numPlayers > 0){ return true; }
+        else {return false;}
     }
 
     public boolean getDecision(String name) {

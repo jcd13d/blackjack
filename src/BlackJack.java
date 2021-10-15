@@ -156,7 +156,8 @@ public class BlackJack extends Game {
     }
 
     public void playerTurns() {
-        for (Player player : playerList) {
+        for (Gambler player : playerList) {
+            if (!player.getPlayingRound()){ continue;}
             System.out.println("\nDealer Hand: ");
             System.out.println(dealer.hands.get(0));
             player.getPlayerMove(deck);
@@ -173,9 +174,7 @@ public class BlackJack extends Game {
             }
         }
     }
-    public void setPlayerList(ArrayList<Gambler> list){
-      this.playerList = list;
-    }
+
     public ArrayList<Gambler> getPlayerList(){
       return this.playerList;
     }
