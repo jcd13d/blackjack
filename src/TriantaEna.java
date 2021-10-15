@@ -16,20 +16,25 @@ public class TriantaEna extends BlackJack {
 
     @Override
     public void playRound() {
+        this.dealCards(1);
+
+        printDealtHands();
+
+        whoIsPlaying();
       
-      getBets();
+        getBets();
 
-      this.dealCards();
+        this.dealCards();
 
-      playerTurns();
+        playerTurns();
 
-      dealerTurn();
+        dealerTurn();
 
-      checkHandWins();
+        checkHandWins();
 
-      playerStatus();
+        playerStatus();
 
-      rotateDealer();
+        rotateDealer();
     }
 
     @Override
@@ -48,14 +53,6 @@ public class TriantaEna extends BlackJack {
 
     @Override
     public void dealCards() {
-        for (Gambler player_init : getPlayerList()) {
-            if (player_init.getBet() != 0) {
-                player_init.addHand(new TEHand());
-            }
-        }
-
-        getDealer().addHand(new TEHand());
-
         for (int i = 0; i < TriantaEna.TENumCards; i++) {
             for (Gambler player : getPlayerList()) {
                 for (Hand hand : player.getHands()) {
@@ -63,6 +60,21 @@ public class TriantaEna extends BlackJack {
                 }
             }
             getDealer().getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
+        }
+    }
+
+    public void dealCards(int numCards) {
+        for (Gambler player_init : getPlayerList()) {
+                player_init.addHand(new TEHand());
+        }
+        getDealer().addHand(new TEHand());
+        for (int i = 0; i < numCards; i++) {
+            for (Gambler player : getPlayerList()) {
+                for (Hand hand : player.getHands()) {
+                    hand.addCard(deck.getTopCard(false));
+                }
+            }
+            getDealer().getHands().get(0).addCard(deck.getTopCard(true));
         }
     }
 
@@ -85,11 +97,39 @@ public class TriantaEna extends BlackJack {
       }
     }
 
+    public void whoIsPlaying(){
+        for (Gambler player: getPlayerList()){
+            boolean decision = getDecision(player.getName());
+            if (decision){
+                player.setPlayingRound(false);
+            }
+            else{
+                player.setPlayingRound(true);
+            }
+        }
+    }
+    public void printDealtHands(){
+        for (Gambler player : getPlayerList()) {
+            for (Hand hand : player.getHands()) {
+                System.out.println(String.format("\n%s's current hand:", player.getName()));
+                System.out.println(hand);
+                System.out.printf("Dealt Hand value: %s\n", hand.getHandValue());
+            }
+        }
+    }
+
     public boolean getDecision(String name) {
-        return utils.getYesNo(beDealerPrompt(name));
+        return utils.getYesNo(playPrompt(name));
     }
 
     public String beDealerPrompt(String name) {
         return String.format("\nPlayer %s, would you like to be the Banker? (Yes or No)", name);
+    }
+    public boolean getPlayDecision(String name) {
+        return utils.getYesNo(beDealerPrompt(name));
+    }
+
+    public String playPrompt(String name) {
+        return String.format("\nPlayer %s, would you like to fold? (Yes or No)", name);
     }
 }

@@ -14,6 +14,8 @@ public abstract class Gambler extends Player implements Comparable<Gambler>{
   //Method to get a bet to be placed by a player
   public abstract double getBet();
 
+  public abstract void setBet(double bet);
+
   //Method to set the players balance
   public abstract void setBalance(double balance);
 
@@ -22,6 +24,10 @@ public abstract class Gambler extends Player implements Comparable<Gambler>{
   public abstract void incrementBalance(double inc);
 
   public abstract void getPlayerMove(Deck deck);
+
+  public abstract void setPlayingRound(boolean b);
+
+  public abstract boolean getPlayingRound();
 
   public abstract int compareTo(Gambler otherPlayer);
 

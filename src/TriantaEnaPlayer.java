@@ -5,11 +5,12 @@ public class TriantaEnaPlayer extends BJPlayer{
     super(name, dealer, 100.0);
     if(dealer){
       setBalance(300.0);
+      setPlayingRound(true);
     }
   }
   @Override
   public void getPlayerMove(Deck deck){
-    if (!super.isDealer()){
+    if (!super.isDealer() & getPlayingRound()){
       for (int i = 0; i < getHands().size(); i++) {
         System.out.println(String.format("\n%s's current hand: ", super.name));
         System.out.println(getHands().get(i));
@@ -69,6 +70,7 @@ public class TriantaEnaPlayer extends BJPlayer{
       return false;
     }
   }
+
   @Override
   public int compareTo(Gambler otherPlayer) {
       return Double.compare(this.getBalance(), otherPlayer.getBalance());
