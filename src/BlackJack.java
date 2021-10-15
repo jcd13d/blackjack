@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class BlackJack extends Game {
     public static final int BJNumCards = 2;
+    private double balanceLimit = 100000;
 
     private ArrayList<BJPlayer> playerList;
     private int numPlayers;
@@ -97,7 +98,11 @@ public class BlackJack extends Game {
 
     public void gameSetup() {
         openingPrompts();
-        numPlayers = getNumPlayers();
+
+        do {
+            numPlayers = getNumPlayers();
+        } while (getNumPlayersCheck(numPlayers));
+
         playerList = new ArrayList<>();
         String playerName;
         double initBalance;
@@ -105,7 +110,9 @@ public class BlackJack extends Game {
         for (int i = 0; i < numPlayers; i++) {
             // add player to list init w info needed
             playerName = getPlayerName();
-            initBalance = getPlayerBalance();
+            do {
+                initBalance = getPlayerBalance();
+            } while (playerBalanceCheck(initBalance, balanceLimit));
             playerList.add(new BJPlayer(playerName, false, initBalance));
         }
     }
@@ -115,8 +122,13 @@ public class BlackJack extends Game {
         return utils.getDouble(playerBalancePrompt());
     }
 
+    private boolean playerBalanceCheck(double balance, double balanceLimit) {
+        System.out.println(balance);
+        return !((balance > 0) & (balance < balanceLimit));
+    }
+
     public String playerBalancePrompt() {
-        return "\nPlease enter player initial balance: ";
+        return String.format("\nPlease enter player initial balance (number > 0 and less than %s): ", balanceLimit);
     }
 
     public String getPlayerName() {
@@ -138,7 +150,11 @@ public class BlackJack extends Game {
     }
 
     public String getNumPlayersPrompt() {
-        return "\nPlease enter the (integer) number of players that will play: ";
+        return "\nPlease enter the (integer) number of players that will play (between 1 and 10 players): ";
+    }
+
+    private boolean getNumPlayersCheck(int input) {
+        return !((input >= 1) & (input <= 10));
     }
 
     public void dealerTurn() {

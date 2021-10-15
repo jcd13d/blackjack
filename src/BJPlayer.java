@@ -140,9 +140,9 @@ public class BJPlayer extends Player implements Gambler {
     //Place the bet into this player's bet value
     //Decrement the balance available to make bets
     public void placeBet() {
-      double betAttempt = Double.parseDouble(utils.getString(getBetPrompt()));
+      double betAttempt = utils.getDouble(getBetPrompt());
       while (!checkBet(betAttempt)){
-        betAttempt = Double.parseDouble(utils.getString(getBetPrompt()));
+        betAttempt = utils.getDouble(getBetPrompt());
         }
         decrementBalance(betAttempt);
         this.bet = this.bet + betAttempt;
