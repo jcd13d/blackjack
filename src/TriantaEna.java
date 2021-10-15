@@ -6,13 +6,12 @@ public class TriantaEna extends BlackJack {
 
     public TriantaEna() {
       super("Trianta Ena");
-      utils = new Utility();
-      deck = new Deck();
-      deck.shuffleDeck();
+      super.utils = new Utility();
+      super.deck = new Deck();
+      super.deck.shuffleDeck();
       super.dealer = new TriantaEnaPlayer("Dealer", true);
       keepPlaying = true;
-      gameSetup();
-
+      this.gameSetup();
     }
 
     @Override
@@ -36,6 +35,8 @@ public class TriantaEna extends BlackJack {
     @Override
     public void gameSetup() {
         super.openingPrompts();
+        super.numPlayers = getNumPlayers();
+        super.playerList = new ArrayList<>();
         String playerName;
         double initBalance;
 
