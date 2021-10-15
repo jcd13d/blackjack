@@ -22,6 +22,10 @@ public class TriantaEnaPlayer extends BJPlayer{
           super.stand();
         } else if (move.equalsIgnoreCase("Hit")) {
           super.hit(deck, getHands().get(i));
+          if(getHands().get(i).getHandValue() == 0){
+            System.out.println(String.format("\nPlayer %s Busted!: ", super.name));
+            break;
+          }
           i--;    // Go again
         }
       }

@@ -1,10 +1,11 @@
 public class BJHand extends Hand{
-    private int bustValue = 21;
 
     public BJHand() {
+        super();
         setBustValue(21);
     }
     public BJHand(int bustValue) {
+        super();
         setBustValue(bustValue);
     }
     @Override
@@ -23,10 +24,10 @@ public class BJHand extends Hand{
             }
             handSum += value;
         }
-        if (aceCounter >= 1 && handSum > bustValue) {
+        if (aceCounter >= 1 && handSum > getBustValue()) {
             handSum -= 10;
         }
-        if (handSum > bustValue) {
+        if (handSum > getBustValue()) {
             this.handValue = 0;
             return this.handValue;
         }
