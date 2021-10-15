@@ -2,6 +2,7 @@
 * opening prompt error handling 
 * remove extra print for when you input bet value 
 * TE num players prompt - need to make a variable in BJ then change that "maxPlayers" 
+  * done
 
 
 # TODO
