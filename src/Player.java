@@ -5,8 +5,6 @@ public abstract class Player {
 
     String name;
     private int numWins;
-    ArrayList<Hand> hands;
-    private boolean dealer;
     protected Utility utils;
 
     public Player() {
@@ -14,14 +12,8 @@ public abstract class Player {
     }
 
     public Player(String name) {
-        this(name, false);
-    }
-
-    public Player(String name, boolean dealer) {
         this.name = name;
         numWins = 0;
-        hands = new ArrayList<Hand>();
-        this.dealer = dealer;
         utils = new Utility();
     }
 
@@ -35,10 +27,6 @@ public abstract class Player {
         return name;
     }
 
-    public ArrayList<Hand> getHands() {
-        return hands;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -49,22 +37,6 @@ public abstract class Player {
 
     public void addWin() {
         numWins++;
-    }
-
-    public boolean isDealer() {
-        return dealer;
-    }
-
-    public void setDealer(boolean dealer) {
-        this.dealer = dealer;
-    }
-
-    public void addHand(Hand hand) {
-        hands.add(hand);
-    }
-
-    public void resetHands() {
-        hands = new ArrayList<>();
     }
 
 }
