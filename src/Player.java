@@ -1,12 +1,11 @@
 import java.util.ArrayList;
 
+// General player class
 public abstract class Player {
     static int totalPlayers = 0;
 
     String name;
     private int numWins;
-    ArrayList<Hand> hands;
-    private boolean dealer;
     protected Utility utils;
 
     public Player() {
@@ -14,17 +13,12 @@ public abstract class Player {
     }
 
     public Player(String name) {
-        this(name, false);
-    }
-
-    public Player(String name, boolean dealer) {
         this.name = name;
         numWins = 0;
-        hands = new ArrayList<Hand>();
-        this.dealer = dealer;
         utils = new Utility();
     }
 
+    // implement the move logic for this type of player
     public abstract void getPlayerMove(Deck deck);
 
     public static int getTotalPlayers() {
@@ -33,10 +27,6 @@ public abstract class Player {
 
     public String getName() {
         return name;
-    }
-
-    public ArrayList<Hand> getHands() {
-        return hands;
     }
 
     public void setName(String name) {
@@ -49,22 +39,6 @@ public abstract class Player {
 
     public void addWin() {
         numWins++;
-    }
-
-    public boolean isDealer() {
-        return dealer;
-    }
-
-    public void setDealer(boolean dealer) {
-        this.dealer = dealer;
-    }
-
-    public void addHand(Hand hand) {
-        hands.add(hand);
-    }
-
-    public void resetHands() {
-        hands = new ArrayList<>();
     }
 
 }

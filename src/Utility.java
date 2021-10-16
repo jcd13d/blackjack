@@ -1,5 +1,10 @@
 import java.util.*;
 
+/*
+Utility class contains common methods used in other classes for retrieving output from the user. 
+Each method returns a specific type after prompting the user with the prompt in the argument. 
+*/
+
 public class Utility {
     Scanner scan;
 
@@ -12,6 +17,7 @@ public class Utility {
         return scan.nextLine();
     }
 
+    // Returns a double - checks that the value entered is numeric
     public double getDouble(String prompt) {
         System.out.println(prompt);
         try {
@@ -23,6 +29,7 @@ public class Utility {
         
     }
 
+    // Returns an int - checks that the value entered is numeric
     public int getInt(String prompt){
         System.out.println(prompt);
         try {
@@ -33,6 +40,7 @@ public class Utility {
         }
     }
 
+    // Returns a boolean based on a yes or no prompt
     public boolean getYesNo(String prompt) {
         System.out.println(prompt);
         String response = scan.nextLine();

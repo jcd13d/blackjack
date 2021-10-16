@@ -7,7 +7,4 @@ public abstract class Game {
     }
 
     public abstract void playGame();
-
-    public abstract void endGame();
-
 }

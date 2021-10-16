@@ -52,8 +52,12 @@ public class TriantaEna extends BlackJack {
     //Overridden method used to setup a game with Trianta Ena players
     @Override
     public void gameSetup() {
-        super.openingPrompts();
+        maxPlayers = 7;
         super.numPlayers = getNumPlayers();
+        while(!checkNumPlayers(super.numPlayers)){
+            System.out.println("Incorrect number of players! Please choose between 1-7.");
+            super.numPlayers = getNumPlayers();
+        }
         super.playerList = new ArrayList<>();
         String playerName;
 
@@ -69,11 +73,12 @@ public class TriantaEna extends BlackJack {
     public void dealCards() {
         for (int i = 0; i < TriantaEna.TENumCards; i++) {
             for (Gambler player : getPlayerList()) {
+                if(!player.getPlayingRound()) { continue;}
                 for (Hand hand : player.getHands()) {
                     hand.addCard(deck.getTopCard(true));
                 }
             }
-            getDealer().getHands().get(0).addCard(deck.getTopCard(i % 2 != 0));
+            getDealer().getHands().get(0).addCard(deck.getTopCard(false));
         }
     }
 
@@ -101,7 +106,7 @@ public class TriantaEna extends BlackJack {
           break;
         }
         else{
-          boolean decision = getDecision(player.getName());
+          boolean decision = getDealerDecision(player.getName());
           if (decision){
             //If the player chooses to be the banker the balances of the player and current banker are swapped
             double tempBalance = player.getBalance();
@@ -135,6 +140,16 @@ public class TriantaEna extends BlackJack {
                 System.out.printf("Dealt Hand value: %s\n", hand.getHandValue());
             }
         }
+        for (Hand hand : dealer.getHands()) {
+            System.out.println(String.format("\n%s's current hand:", dealer.getName()));
+            System.out.println(hand);
+            System.out.printf("Dealt Hand value: %s\n", hand.getHandValue());
+        }
+    }
+
+    public boolean checkNumPlayers(int numPlayers){
+        if (numPlayers <= 7 & numPlayers > 0){ return true; }
+        else {return false;}
     }
 
     //Helper method to ask player for input on whether or not to fold card, if player chooses to fold they sit out this round
@@ -146,9 +161,8 @@ public class TriantaEna extends BlackJack {
     public String beDealerPrompt(String name) {
         return String.format("\nPlayer %s, would you like to be the Dealer/Banker? (Yes or No)", name);
     }
-
     //Method used to determine whether player wants to become the dealer or not
-    public boolean getPlayDecision(String name) {
+    public boolean getDealerDecision(String name) {
         return utils.getYesNo(beDealerPrompt(name));
     }
     //Prompt used to ask player if they would like to fold or not

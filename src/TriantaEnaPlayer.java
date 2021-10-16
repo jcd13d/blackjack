@@ -15,9 +15,10 @@ public class TriantaEnaPlayer extends BJPlayer{
   //Overriden getPlayerMove method, gives a Trianta Ena player the option to Stand or Hit
   @Override
   public void getPlayerMove(Deck deck){
-    if (!super.isDealer() & getPlayingRound()){
+    if (!super.isDealer() && super.getPlayingRound()){
       for (int i = 0; i < getHands().size(); i++) {
         System.out.println(String.format("\n%s's current hand: ", super.name));
+        getHands().get(i).getHand().get(0).setCardFaceUp(true);
         System.out.println(getHands().get(i));
         System.out.printf("Hand Value: %s\n", getHands().get(i).getHandValue());
         String move = utils.getString(this.getMovePrompt());
@@ -36,11 +37,13 @@ public class TriantaEnaPlayer extends BJPlayer{
         }
       }
     }
-    else{
+    else if(super.isDealer()){
       // dealer move
       System.out.println("\nDealer's move: ");
-      System.out.println("\nDealer's move: ");
       for (Hand hand : getHands()) {
+        for(Card card : hand.getHand()){
+          card.setCardFaceUp(true);
+        }
         System.out.println(String.format("%s's current hand: ", this.name));
         System.out.println(hand);
         this.dealerLogic(deck, hand);

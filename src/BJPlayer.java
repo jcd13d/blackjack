@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 
+// Class keeping variables and methods associated with a player that will play blackjack
 public class BJPlayer extends Gambler {
     public static int dealerStaysOn = 17;
     private double balance;
     private double bet;
     private boolean playingRound;
 
+    // initializing variables
     public BJPlayer(String name, boolean dealer, double initBalance) {
         super(name, dealer);
         balance = initBalance;
@@ -13,9 +15,13 @@ public class BJPlayer extends Gambler {
         playingRound = true;
     }
 
+    // logic for each move a player moakes
     public void getPlayerMove(Deck deck) {
         String input;
+
+        // different logic if the player is switched to be a dealer
         if (!super.isDealer()) {
+            // for each hand player has do move
             for (int i = 0; i < hands.size(); i++) {
                 System.out.println(String.format("\n%s's current hand: ", this.name));
                 System.out.println(hands.get(i));
@@ -61,6 +67,7 @@ public class BJPlayer extends Gambler {
         }
     }
 
+    // logic to stop the hand early if the player achieves blackjack or busts
     private boolean earlyHandStopCheck(int handIndex, Deck deck) {
         boolean earlyStop = false;
         if (hands.get(handIndex).getHandValue() == 0) {
@@ -83,6 +90,7 @@ public class BJPlayer extends Gambler {
         return earlyStop;
     }
 
+    // logic for a dealer's turn
     private void dealerLogic(Deck deck, Hand hand) {
         while ((hand.getHandValue() < BJPlayer.dealerStaysOn) & hand.getHandValue() != 0) {
             hit(deck, hand);
@@ -156,12 +164,13 @@ public class BJPlayer extends Gambler {
         decrementBalance(betAttempt);
         this.bet = this.bet + betAttempt;
       }
+
     public void placeBet(double betAttempt) {
       decrementBalance(betAttempt);
       this.bet = this.bet + betAttempt;
     }
+
     public void decrementBalance(double dec) {
-        // TODO Handle error for balance less than zero
         this.balance = this.balance - dec;
     }
 
@@ -187,6 +196,8 @@ public class BJPlayer extends Gambler {
     public String invalidMovePrompt() {
         return "Invalid Move!!";
     }
+
+    // logic for a valid bet amount
     public boolean checkBet(double betAttempt){
       if (betAttempt < 0 || betAttempt > this.balance){
         return false;
@@ -194,6 +205,7 @@ public class BJPlayer extends Gambler {
       else{ return true;}
     }
 
+    // logic to see that an input move is valid
     public boolean checkMove(String move){
       if (move.equalsIgnoreCase("Hit") || move.equalsIgnoreCase("Stand") || move.equalsIgnoreCase("Double Up") ||move.equalsIgnoreCase("Split")){
         return true;
@@ -212,6 +224,7 @@ public class BJPlayer extends Gambler {
         return this.playingRound;
     }
 
+    // compares players standing wrt balance
     @Override
     public int compareTo(Gambler otherPlayer) {
         return Double.compare(this.getBalance(), otherPlayer.getBalance());

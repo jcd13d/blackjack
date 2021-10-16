@@ -1,14 +1,20 @@
+import java.util.ArrayList;
+
 //Gambler interface used for force implementation of methods needed for betting card games
 public abstract class Gambler extends Player implements Comparable<Gambler>{
+  ArrayList<Hand> hands;
+  private boolean dealer;
 
   //Constructor of a Gambler type Object by calling the Player constructor
   public Gambler(String name){
-      super(name);
+    super(name);
   }
 
   //Overloaded constructor that is used to set which player is the dealer
   public Gambler(String name, boolean dealer){
-    super(name, dealer);
+    super(name);
+    hands = new ArrayList<Hand>();
+    this.dealer = dealer;
   }
 
   //Method to place a bet to be used by a player
@@ -40,5 +46,25 @@ public abstract class Gambler extends Player implements Comparable<Gambler>{
 
   //Method needed to implement the comparable interface
   public abstract int compareTo(Gambler otherPlayer);
+
+  public boolean isDealer() {
+    return this.dealer;
+  }
+
+  public void setDealer(boolean dealer) {
+    this.dealer = dealer;
+  }
+
+  public void addHand(Hand hand) {
+    hands.add(hand);
+  }
+
+  public void resetHands() {
+    hands = new ArrayList<>();
+  }
+
+  public ArrayList<Hand> getHands() {
+    return hands;
+  }
 
   }
