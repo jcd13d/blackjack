@@ -162,7 +162,7 @@ public class BJPlayer extends Gambler {
         betAttempt = utils.getDouble(getBetPrompt());
         }
         decrementBalance(betAttempt);
-        this.bet = this.bet + betAttempt;
+        this.bet = betAttempt;
       }
 
     public void placeBet(double betAttempt) {
