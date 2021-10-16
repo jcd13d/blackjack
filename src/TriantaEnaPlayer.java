@@ -1,6 +1,9 @@
+//Trianta Ena Player class extends the BlackJack Player class and override appropriate methods to allow proper Trianta Ena gameplay
 public class TriantaEnaPlayer extends BJPlayer{
+  //Value used to set dealer stratgey
   private static int dealerStaysOn = 27;
 
+  //Constructor for Trianta Ena Player
   public TriantaEnaPlayer(String name, boolean dealer){
     super(name, dealer, 100.0);
     if(dealer){
@@ -8,6 +11,8 @@ public class TriantaEnaPlayer extends BJPlayer{
       setPlayingRound(true);
     }
   }
+
+  //Overriden getPlayerMove method, gives a Trianta Ena player the option to Stand or Hit
   @Override
   public void getPlayerMove(Deck deck){
     if (!super.isDealer() & getPlayingRound()){
@@ -47,6 +52,7 @@ public class TriantaEnaPlayer extends BJPlayer{
     }
   }
 
+  //Method to used to execute the dealer strategy
   private void dealerLogic(Deck deck, Hand hand) {
     while ((hand.getHandValue() < TriantaEnaPlayer.dealerStaysOn) & hand.getHandValue() != 0) {
       hit(deck, hand);
@@ -55,11 +61,13 @@ public class TriantaEnaPlayer extends BJPlayer{
     }
   }
 
+  //Overridden method adjust the BlackJAck player prompt for Trianta Ena
   @Override
   public String getMovePrompt() {
       return "What move would you like to make? Type: 'Stand' or 'Hit'";
   }
 
+  //Validates the move made by the player for Trianta Ena
   @Override
   public boolean checkMove(String move){
     if (move.equalsIgnoreCase("Hit") || move.equalsIgnoreCase("Stand")){
@@ -71,6 +79,7 @@ public class TriantaEnaPlayer extends BJPlayer{
     }
   }
 
+  //Compares players by their balance, used to order players accordingly
   @Override
   public int compareTo(Gambler otherPlayer) {
       return Double.compare(this.getBalance(), otherPlayer.getBalance());
